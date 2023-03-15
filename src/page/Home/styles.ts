@@ -7,44 +7,28 @@ export const Styles = styled.div`
     padding: 0;
     font-family: sans-serif;
 }
-div {
+.title {
     align-items:center;
-    //justify-content:center; 
     display:flex;
-    flex-direction: column;
+/*     flex-direction: column; */
 }
 
-.body{
-    position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-    background-color: #F0F8FF;
-}
-
-h1{
-    text-align: center;
-    color: black;
-    font-size: 2.5rem;
-    padding: 2rem;
-}
-
-h4{
-    font-weight: normal;
+.icon-cart{
+    height: 50px;
+    width: 50px;
+    margin-left: -20px;
 }
 
 input{
-    display: flex;
-    background: white;
     outline: none;
-    width: 17rem;
     border: none;
-    padding: 1rem 0rem;
-    border-radius: 1rem;
     text-align: center;
-    margin-bottom: 1rem;
-    box-shadow: 19px 22px 15px -3px rgb(0 0 0 / 10%);
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+input:focus{
+    box-shadow: rgba(255, 122, 136, 0.4) 3px 5px 28px -3px;
 }
 
 input:focus::-webkit-input-placeholder {
@@ -60,17 +44,42 @@ input:focus:-ms-input-placeholder {
    color: transparent;  
 }
 
-button{
-    font-size: 1.5vw;
-    cursor: pointer;
-    background-color: rgb(232, 185, 74);
-    margin-bottom: 1rem;
-    border-width: initial;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
-    outline: none;
-    border-radius: 8px;
-    padding: 1rem 2rem;
+.body{
+    align-items:center;
+    display:flex;
+    flex-direction: column;
+    position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+    background-color: #F0F8FF;
 }
+
+h1{
+    display: flex;
+    text-align: center;
+    color: black;
+    font-size: 2.5rem;
+    padding: 2rem;
+    font-family: 'Karla', sans-serif;
+}
+
 `;
+
+export const ListButton = styled.button`
+
+    border: none;
+    outline: none;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: ${({color}) => color};
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    :hover{
+        transform: scale(1.2);
+    }
+ `;
