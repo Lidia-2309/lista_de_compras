@@ -13,25 +13,34 @@ interface food {
 
 export const Home = () => {
 
-    const foods = [
-        "Fruta",
-        "Verdura",
-        "Carne",
-        "Higiene",
-        "Guloseimas",
-        "Outro"
-    ]
+    const foods = {
+        name: [
+          "Fruta",
+          "Verdura",
+          "Carne",
+          "Higiene",
+          "Guloseimas",
+          "Outro"
+        ]
+      };
 
     const [backgroundButton, setBackgroundButton] = useState("white")
     const [clickColor, setClickColor] = useState(false)
+    const [cor, setCor] = useState('branco');
+    const [selectedButton, setSelectedButton] = useState("");
+    const [value_ant, setValue_Ant] = useState('');
 
-    const hanClickColorButton = () => {
-        setClickColor(!clickColor)
-        if(clickColor == true){
-        setBackgroundButton("rgb(255, 122, 136)");
+    const hanClickColorButton = (value:string) => {
+        setClickColor(!clickColor);
+        console.log('Valor:'+ value + ' = ' + clickColor)
+        console.log('value_ant:'+ value_ant)
+
+        if(clickColor === true || value_ant !== value){
+            setSelectedButton(value);
         }
         else{
-            setBackgroundButton("white");
+            setSelectedButton('');
+            setValue_Ant(value);
         }
     }
 
@@ -48,29 +57,18 @@ export const Home = () => {
                     >
                     </input>
                     <div> 
-                            <ListButton color={backgroundButton} onClick={hanClickColorButton}>
-                                Fruta
-                            </ListButton>
-                            <ListButton color={backgroundButton} onClick={hanClickColorButton}>
-                                Verdura
-                            </ListButton>
-                            <ListButton color={backgroundButton} onClick={hanClickColorButton}>
-                                Carne
-                            </ListButton>
-                            <ListButton color={backgroundButton} onClick={hanClickColorButton}>
-                                Higiene
-                            </ListButton>
-                            <ListButton color={backgroundButton} onClick={hanClickColorButton}>
-                                Guloseimas
-                            </ListButton>
-                            <ListButton color={backgroundButton} onClick={hanClickColorButton}>
-                                Outro
+                        {foods.name.map((value) => (
+                            <ListButton 
+                                value={value} 
+                                color={selectedButton === value ? "rgb(255, 122, 136)" : "white"} 
+                                onClick={()=> 
+                                    (hanClickColorButton(value))
+                                }>{value}
                             </ListButton>  
+                        ))}                             
                     </div> 
-                    
             </div>
         </Styles>
-       
     );
 };
 
