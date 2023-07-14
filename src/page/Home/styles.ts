@@ -64,7 +64,18 @@ h1{
     padding: 2rem;
     font-family: 'Karla', sans-serif;
 }
-
+.button {
+    border: none;
+    outline: none;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(255, 122, 136);
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+}
 `;
 
 export const ListButton = styled.button`
