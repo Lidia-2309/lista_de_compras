@@ -60,6 +60,15 @@ export const Home = () => {
         }
     },[clickColor, cont])
 
+
+    // useEffect(() => {
+    //     if(view === true){
+    //         product
+    //         values
+    //         price
+    //     }
+    // },[clickColor, cont])
+
     return (
         <Styles>
             <div className="body">
@@ -96,8 +105,24 @@ export const Home = () => {
                     </input>
                                     
                     <button onClick={() => setView(true)} className="button">Adicionar item</button>
+                                    
+                    <div className="List"> 
+                        {foods.name.map((value) => (
+                            <h2>
+                                    {value}
 
-                    { view === true ? 
+                                    { values === value && view === true ? 
+                                        <div> 
+                                            <h6>{product}  {price}R$</h6>
+                                        </div> 
+                                        
+                                        : null
+                                    }
+                            </h2>  
+                        ))}                             
+                    </div> 
+
+                    {/* { view === true ? 
                         <div> 
                             <h2>Produto: {product}</h2>
                             <h2>Tipo: {values}</h2>
@@ -105,7 +130,8 @@ export const Home = () => {
                         </div> 
                         
                         : null
-                    }
+                    } */}
+
             </div>
         </Styles>
     );

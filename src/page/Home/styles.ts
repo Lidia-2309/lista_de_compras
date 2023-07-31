@@ -64,6 +64,20 @@ h1{
     padding: 2rem;
     font-family: 'Karla', sans-serif;
 }
+
+.List{
+    display: flex;
+    text-align: center;
+    color: black;
+    /* font-size: 2.5rem;*/
+    padding: 2rem;
+    font-family: 'Karla', sans-serif;
+}
+
+h2 {
+    padding: 1rem;
+}
+
 .button {
     border: none;
     outline: none;
