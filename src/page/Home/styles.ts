@@ -90,6 +90,12 @@ h2 {
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
 }
+
+.products {
+    padding-top: 0.5rem;
+    font-size:1rem;
+    font-weight: 100;
+}
 `;
 
 export const ListButton = styled.button`

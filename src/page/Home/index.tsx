@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ListButton, Styles } from "./styles";
-import { GiShoppingCart } from "react-icons/gi"
-import { type } from "os";
+import { GiShoppingCart} from "react-icons/gi";
+import { FcCancel} from "react-icons/fc"
 
 interface food {
     name_food:string,
@@ -22,12 +22,7 @@ export const Home = () => {
         ]
       };
 
-    const [listproducts, setListProducts] = useState<food[]>([/* {
-        name_food: '',
-        price_food: 0,
-        type_food: ''
-    } */])
-      
+    const [listproducts, setListProducts] = useState<food[]>([])
     const [product, setProduct] = useState('');
     const [clickColor, setClickColor] = useState(false)
     const [selectedButton, setSelectedButton] = useState("");
@@ -136,13 +131,17 @@ export const Home = () => {
                             <h2>
                                     {value}
 
-                                   {/*  { values === value && view === true ? 
                                         <div> 
-                                            <h6>{product}  {price}R$</h6>
+                                           {
+                                            listproducts.map((valores)=>(
+                                                value === valores.type_food ?  
+                                                <div className="products">{valores.name_food + " - " + valores.price_food+"R$"+" "} 
+                                                <FcCancel onClick={() => console.log('apagar item')}/> </div>
+                                                : null
+                                            ))
+                                        }
                                         </div> 
-                                        
-                                        : null
-                                    } */}
+
                             </h2>  
                         ))}                             
                     </div> 
