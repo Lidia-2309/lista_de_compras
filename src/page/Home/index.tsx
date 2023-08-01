@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { ListButton, Styles } from "./styles";
 import { GiShoppingCart } from "react-icons/gi"
+import { type } from "os";
 
 interface food {
-    fruit:string,
-    vegetable: string,
-    meat: string,
-    hygiene: string,
-    sweets: string,
-    other: string
+    name_food:string,
+    price_food:number,
+    type_food:string
 }
 
 export const Home = () => {
@@ -23,7 +21,13 @@ export const Home = () => {
           "Outro"
         ]
       };
-    
+
+    const [listproducts, setListProducts] = useState<food[]>([/* {
+        name_food: '',
+        price_food: 0,
+        type_food: ''
+    } */])
+      
     const [product, setProduct] = useState('');
     const [clickColor, setClickColor] = useState(false)
     const [selectedButton, setSelectedButton] = useState("");
@@ -43,9 +47,30 @@ export const Home = () => {
         }
         setValues(value);
     }
+    const [log, setLog] = useState<boolean>(false);
+
+    const handleObjectValues = (namee:string, pricee: number, typee:string) => {
+        setView(true);
+        const newfood: food = {
+            name_food: namee,
+            price_food: pricee,
+            type_food: typee
+        }
+        setListProducts((prevState) => ([
+            ...prevState,
+           newfood
+        ]))
+        setLog(true)
+    }
+
+    useEffect(()=> {
+        if(log === true){
+            console.log(listproducts);
+            setLog(false)
+        }
+    },[log])
 
     useEffect(() => {
-        console.log('Valor:'+ values)
         if(value_ant === values){
             setSelectedButton('');
             setValue_Ant('');
@@ -104,20 +129,20 @@ export const Home = () => {
                         >
                     </input>
                                     
-                    <button onClick={() => setView(true)} className="button">Adicionar item</button>
+                    <button onClick={() => handleObjectValues(product, price, values)} className="button">Adicionar item</button>
                                     
                     <div className="List"> 
                         {foods.name.map((value) => (
                             <h2>
                                     {value}
 
-                                    { values === value && view === true ? 
+                                   {/*  { values === value && view === true ? 
                                         <div> 
                                             <h6>{product}  {price}R$</h6>
                                         </div> 
                                         
                                         : null
-                                    }
+                                    } */}
                             </h2>  
                         ))}                             
                     </div> 
