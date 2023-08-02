@@ -4,6 +4,7 @@ import { GiShoppingCart} from "react-icons/gi";
 import { FcCancel} from "react-icons/fc"
 
 interface food {
+    id_food: number,
     name_food:string,
     price_food:number,
     type_food:string
@@ -31,6 +32,8 @@ export const Home = () => {
     const [cont, setCont] = useState(false);
     const [price, setPrice] = useState<number>(0);
     const [view, setView] = useState(false);
+    const [idChange, setIdChange] = useState<number>(0);
+    const [idTrash,setIdTrash] = useState<number>(0);
 
     const hanClickColorButton = (value:string) => {
         if(value !== values){
@@ -43,10 +46,13 @@ export const Home = () => {
         setValues(value);
     }
     const [log, setLog] = useState<boolean>(false);
-
+    const [idNext, setIdNext] = useState<number>(0);
     const handleObjectValues = (namee:string, pricee: number, typee:string) => {
         setView(true);
+        setIdNext(idNext + 1);
+        
         const newfood: food = {
+            id_food: idNext,
             name_food: namee,
             price_food: pricee,
             type_food: typee
@@ -88,6 +94,17 @@ export const Home = () => {
     //         price
     //     }
     // },[clickColor, cont])
+    const handleTrash = (name:string) => {
+        const index = listproducts.findIndex((product) => product.name_food === name);
+        console.log(index)
+        listproducts.splice(index, 1);
+        setListProducts(listproducts);
+        setIdChange(+idChange);
+    }
+
+    useEffect(()=>{
+        
+    },[idChange])
 
     return (
         <Styles>
@@ -136,7 +153,7 @@ export const Home = () => {
                                             listproducts.map((valores)=>(
                                                 value === valores.type_food ?  
                                                 <div className="products">{valores.name_food + " - " + valores.price_food+"R$"+" "} 
-                                                <FcCancel onClick={() => console.log('apagar item')}/> </div>
+                                                <FcCancel onClick={() => handleTrash(valores.name_food)}/> </div>
                                                 : null
                                             ))
                                         }
@@ -145,17 +162,6 @@ export const Home = () => {
                             </h2>  
                         ))}                             
                     </div> 
-
-                    {/* { view === true ? 
-                        <div> 
-                            <h2>Produto: {product}</h2>
-                            <h2>Tipo: {values}</h2>
-                            <h2>Preço: {price}</h2>
-                        </div> 
-                        
-                        : null
-                    } */}
-
             </div>
         </Styles>
     );
