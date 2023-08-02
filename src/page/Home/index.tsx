@@ -2,13 +2,7 @@ import { useEffect, useState } from "react";
 import { ListButton, Styles } from "./styles";
 import { GiShoppingCart} from "react-icons/gi";
 import { FcCancel} from "react-icons/fc"
-
-interface food {
-    id_food: number,
-    name_food:string,
-    price_food:number,
-    type_food:string
-}
+import food from "../../interfaces";
 
 export const Home = () => {
 
@@ -31,9 +25,8 @@ export const Home = () => {
     const [values, setValues] = useState('');  // -> usado para guardar o value e usar no useEffect
     const [cont, setCont] = useState(false);
     const [price, setPrice] = useState<number>(0);
-    const [view, setView] = useState(false);
     const [idChange, setIdChange] = useState<number>(0);
-    const [idTrash,setIdTrash] = useState<number>(0);
+    const [idNext, setIdNext] = useState<number>(0);
 
     const hanClickColorButton = (value:string) => {
         if(value !== values){
@@ -45,12 +38,9 @@ export const Home = () => {
         }
         setValues(value);
     }
-    const [log, setLog] = useState<boolean>(false);
-    const [idNext, setIdNext] = useState<number>(0);
+
     const handleObjectValues = (namee:string, pricee: number, typee:string) => {
-        setView(true);
         setIdNext(idNext + 1);
-        
         const newfood: food = {
             id_food: idNext,
             name_food: namee,
@@ -61,15 +51,7 @@ export const Home = () => {
             ...prevState,
            newfood
         ]))
-        setLog(true)
     }
-
-    useEffect(()=> {
-        if(log === true){
-            console.log(listproducts);
-            setLog(false)
-        }
-    },[log])
 
     useEffect(() => {
         if(value_ant === values){
@@ -87,24 +69,15 @@ export const Home = () => {
     },[clickColor, cont])
 
 
-    // useEffect(() => {
-    //     if(view === true){
-    //         product
-    //         values
-    //         price
-    //     }
-    // },[clickColor, cont])
     const handleTrash = (name:string) => {
         const index = listproducts.findIndex((product) => product.name_food === name);
-        console.log(index)
         listproducts.splice(index, 1);
-        setListProducts(listproducts);
-        setIdChange(+idChange);
+        setIdChange(idChange+1);
     }
 
     useEffect(()=>{
-        
-    },[idChange])
+        setListProducts(listproducts);
+    },[listproducts,idChange])
 
     return (
         <Styles>
@@ -152,7 +125,7 @@ export const Home = () => {
                                            {
                                             listproducts.map((valores)=>(
                                                 value === valores.type_food ?  
-                                                <div className="products">{valores.name_food + " - " + valores.price_food+"R$"+" "} 
+                                                <div className="products">{valores.name_food + " - " + valores.price_food + "R$" + " "} 
                                                 <FcCancel onClick={() => handleTrash(valores.name_food)}/> </div>
                                                 : null
                                             ))
