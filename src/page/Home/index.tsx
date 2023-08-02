@@ -86,6 +86,7 @@ export const Home = () => {
                         <h1>Lista de Compras</h1> 
                         <GiShoppingCart className="icon-cart"></GiShoppingCart>
                     </div>
+                    
                     <h3>O que deseja adicionar na sua lista?</h3>
                     
                     <input 
@@ -93,7 +94,7 @@ export const Home = () => {
                         placeholder="Nome do item">
                     </input>
 
-                    <div> 
+                    <div className="types-food"> 
                         {foods.name.map((value) => (
                             <ListButton 
                                 value={value} 
